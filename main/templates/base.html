@@ -1,10 +1,15 @@
+{% load bootstrap5 %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 </head>
 <body>
+{% include "navbar.html" %}
+{% comment %}
 {% if messages %}
 <ul class="messages">
     {% for message in messages %}
@@ -12,5 +17,14 @@
     {% endfor %}
 </ul>
 {% endif %}
+{% endcomment %}
+
+<div class="container">
+{% bootstrap_messages %}
+
+{% block content %}
+
+{% endblock %}
+</div>
 </body>
 </html>

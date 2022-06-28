@@ -1,17 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1>sign up</h1>
-<form method="POST">
+{% extends "base.html" %}
+{% load bootstrap5 %}
+
+{{ bloc.super }}
+<!--add block content z base.html-->
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-lg-3 col-s-1"></div>
+        <div class="col-lg-6 col-s-10">
+
+<h1>sign up</h1>
+    <form method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type=""submit">Save</button>
+{#    {{ form.as_p }}  #}
+    {% bootstrap_form form %}
+    <button type="submit">Save</button>
 </form>
-
-
-</body>
-</html>
+            </div>
+        <div class="col-lg-3 col-s-1"></div>
+    </div>
+{% endblock %}}

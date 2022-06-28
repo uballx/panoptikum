@@ -16,11 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import render, redirect, HttpResponse
-def ala(request):
-    return HttpResponse("ala")
+# def ala(request):
+#     return HttpResponse("ala")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', ala),
-    path('register/', include('main.urls')),
+    # path('', ala),
+    path('', include('main.urls')),
 ]
