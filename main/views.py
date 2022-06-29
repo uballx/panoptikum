@@ -1,7 +1,8 @@
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from .forms import NewUserForm
+from .forms import NewUserForm, BioForm
 from django.contrib import messages
 
 def homepage(request):
@@ -61,3 +62,32 @@ def logout_request(request):
     logout(request)
     messages.info(request, "Logged out")
     return redirect("/")
+
+def bio_input(request, id):
+    user = User.objects.get(pk=id)
+    try:
+        profile = user.userprofile
+    except Exception:
+        profile = None
+    if request.method=="POST":
+        form = BioForm(instance=profile)
+        # form = BioForm(data=request.POST)
+        if form.is_valid():
+            # profile = form.cleaned_data.get('bio')
+            # profile = form.save(commit=False)
+            # profile.user = user
+            profile.save()
+    if profile:
+        form = BioForm(instance=profile)
+    else:
+        form = BioForm()
+
+    # bio =
+    form = BioForm()
+    return render(
+        request=request,
+        template_name="main/bio.html",
+        context={'form': form,
+                 'profile': profile
+                 }
+    )

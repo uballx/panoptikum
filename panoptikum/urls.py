@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', ala),
     path('', include('main.urls')),
+    path('', include('photos.urls')),
 ]

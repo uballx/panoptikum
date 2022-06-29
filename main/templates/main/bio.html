@@ -9,16 +9,20 @@
         <div class="col-lg-3 col-s-1"></div>
         <div class="col-lg-6 col-s-10">
 
-
+<h1>Profil uzytkownika {{ profile.user.username }}</h1>
+            {% if user != profile.user %}
+            {{profile.user.bio}}
+            {% endif%}
+            {% if user == profile.user %}
     <form method="POST">
         {% csrf_token %}
-        {{ login_form|crispy }}
+        {{ form|crispy }}
 <!--        OR -->
 {#        {% crispy login_form %} #}
-        <button class="btn btn-primary" type="submit">Login</button>
+        <button class="btn btn-primary" type="submit">Save</button>
 
     </form>
-
+{% endif %}
         </div>
         <div class="col-lg-3 col-s-1"></div>
     </div>
